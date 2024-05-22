@@ -63,7 +63,26 @@ class ComunaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        
+{
+    $comuna = Comuna::find($id);
+
+    if (!$comuna) {
+        return response()->json(['error' => 'Comuna not found'], 404);
+    }
+
+    $request->validate([
+        'name' => 'sometimes|required|string|max:255',
+        // otras validaciones que necesites
+    ]);
+
+    $comuna->name = $request->input('name', $comuna->name);
+    // asignar otros campos si se proporcionan en el request
+    $comuna->save();
+
+    return response()->json($comuna);
+}
+
     }
 
     /**
