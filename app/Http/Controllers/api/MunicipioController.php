@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\api;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use App\Models\Municipio;
 use Illuminate\Http\Request;
+
 
 class MunicipioController extends Controller
 {
@@ -12,7 +14,12 @@ class MunicipioController extends Controller
      */
     public function index()
     {
-        //
+        
+        {
+            $municipios = Municipio::all();
+            return response()->json($municipios);
+        }
+        
     }
 
     /**
