@@ -90,6 +90,18 @@ class ComunaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+       
+{
+    $comuna = Comuna::find($id);
+
+    if (!$comuna) {
+        return response()->json(['error' => 'Comuna not found'], 404);
+    }
+
+    $comuna->delete();
+
+    return response()->json(null, 204);
+}
+
     }
 }
