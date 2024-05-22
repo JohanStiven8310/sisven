@@ -22,7 +22,22 @@ class ComunaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    
+    
+        {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                // otras validaciones que necesites
+            ]);
+        
+            $comuna = new Comuna();
+            $comuna->name = $request->name;
+            // asignar otros campos
+            $comuna->save();
+        
+            return response()->json($comuna, 201);
+        }
+        
     }
 
     /**
