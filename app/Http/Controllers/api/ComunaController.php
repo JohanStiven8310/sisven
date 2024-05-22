@@ -45,7 +45,17 @@ class ComunaController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
+        {
+            $comuna = Comuna::find($id);
+        
+            if (!$comuna) {
+                return response()->json(['error' => 'Comuna not found'], 404);
+            }
+        
+            return response()->json($comuna);
+        }
+        
     }
 
     /**
